@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Insulin Doses Calculator — a fast, simple insulin bolus calculator and meal planning companion. Website coming soon." />
+  <meta name="theme-color" content="#FFFFFF" />
+  <title>Insulin Doses Calculator — Coming Soon</title>
+  <link rel="icon" href="assets/idc-logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="top">
+  <header class="header">
+    <a class="brand" href="https://insulindosescalculator.com/" aria-label="Insulin Doses Calculator home">
+      <span class="logo" aria-hidden="true">
+        <img src="assets/idc-logo.png" alt="Insulin Doses Calculator logo" />
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">Insulin Doses Calculator</span>
+        <span class="brand-sub">insulindosescalculator.com</span>
+      </span>
+    </a>
+
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button class="theme-toggle" aria-label="Toggle dark mode" id="theme-toggle" title="Toggle dark/light mode">
+        <span id="theme-icon">🌙</span>
+      </button>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="nav">
+      <a href="#top">Home</a>
+      <a href="#features-separator">Features</a>
+      <a href="#about-separator">About</a>
+      <a href="#screenshots-separator">Screenshots</a>
+      <a href="#download-separator">Download</a>
+      <a href="#contact-separator" class="button small">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="pill">Website in progress</p>
+          <h1>A simple, personal insulin calculator — built for real life.</h1>
+          <p class="lead">
+            We’re building the full website for <strong>Insulin Doses Calculator</strong>. For now, this page is here to
+            confirm the domain and share what’s coming.
+          </p>
+          <div class="cta">
+            <a class="button" href="#contact-separator">Get in touch</a>
+            <a class="button ghost" href="#about-separator">Learn more</a>
+          </div>
+
+          <ul class="trust">
+            <li><span class="dot"></span>Fast meal-based calculations</li>
+            <li><span class="dot"></span>Local meal history & insights</li>
+            <li><span class="dot"></span>Food database & meal planning</li>
+          </ul>
+
+          <p class="disclaimer">
+            <strong>Important:</strong> This app/website does not provide medical advice.
+            Always follow guidance from your diabetes care team.
+          </p>
+        </div>
+
+        <div class="hero-card" aria-label="App preview">
+          <div class="mock">
+            <img src="assets/glucoplan-preview.png" alt="GlucoPlan app preview" class="preview-image" onclick="openLightbox()" style="cursor: pointer;" onerror="hideHeroCard();" />
+          </div>
+          <div class="card-footer">
+            <span>Coming soon: full site, FAQs, privacy info, and downloads.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="features-separator" class="section-separator" style="scroll-margin-top: 80px;"></div>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2>What we’re building</h2>
+        <div class="grid">
+          <article class="feature">
+            <h3>Meal-time planning</h3>
+            <p>Create breakfast/lunch/dinner plans and quickly calculate insulin based on your profile settings.</p>
+          </article>
+          <article class="feature">
+            <h3>Food database</h3>
+            <p>Browse foods and build meals from common items (carbs, sugars, serving sizes).</p>
+          </article>
+          <article class="feature">
+            <h3>Insights & analytics</h3>
+            <p>See trends over time with simple charts to help you understand what’s working for you.</p>
+          </article>
+          <article class="feature">
+            <h3>Private by design</h3>
+            <p>Designed for local storage and minimal data collection. Clear, plain-language privacy policy on launch.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div id="about-separator" class="section-separator" style="scroll-margin-top: 80px;"></div>
+
+    <section id="about" class="section alt">
+      <div class="container">
+        <h2>About Insulin Doses Calculator</h2>
+        <p>
+          Insulin Doses Calculator is a simple, intuitive app designed to support people living with diabetes in making informed decisions around insulin dosing. Built for both Type 1 and insulin-dependent Type 2 diabetes, the app helps users better understand how food intake, blood glucose levels, and personal insulin settings work together.
+        </p>
+        <p>
+          The app allows users to log meals, view nutritional information, and receive insulin dose recommendations based on their individual insulin-to-carbohydrate ratios and correction factors. By combining structured data with intelligent calculations, Insulin Doses Calculator aims to reduce guesswork and bring greater confidence to everyday diabetes management.
+        </p>
+        <p>
+          With a clean, user-friendly interface, the app makes it easy to:
+        </p>
+        <ul style="color: black; line-height: 1.8; margin: 0 0 18px 0; padding-left: 24px;">
+          <li>Record meals and nutritional values</li>
+          <li>Track blood glucose history</li>
+          <li>View meal history and insights</li>
+          <li>View trends over time with charts and graphs, 7, 14, 30 & 90 day views</li>
+          <li>Generate dose guidance tailored to the user</li>
+        </ul>
+        <p>
+          Insulin Doses Calculator is designed as a supportive tool, not a replacement for medical advice. All recommendations are intended to complement guidance provided by healthcare professionals, empowering users to stay informed, organised, and in control of their routine.
+        </p>
+        <p>
+          The app is currently in development and will be available for download in the future.
+        </p>
+        <p></p>
+
+      </div>
+      
+      <div id="screenshots-separator" class="section-separator" style="scroll-margin-top: 80px;"></div>
+      
+      <div class="container" id="screenshots" style="margin-top: 40px;">
+        <h2 style="margin-bottom: 24px;">Screenshots</h2>
+        <p style="color: var(--muted); margin-bottom: 24px;">Get a taste of what the app will look like:</p>
+        <div class="screenshots-gallery">
+          <div class="screenshot-item" data-screenshot="1" onclick="openLightboxWithImage('assets/screenshot-1.png')">
+            <img src="assets/screenshot-1.png" alt="GlucoPlan screenshot 1" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+            <div class="screenshot-overlay">
+              <span class="screenshot-icon">🔍</span>
+            </div>
+          </div>
+          <div class="screenshot-item" data-screenshot="2" onclick="openLightboxWithImage('assets/screenshot-2.png')">
+            <img src="assets/screenshot-2.png" alt="GlucoPlan screenshot 2" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+            <div class="screenshot-overlay">
+              <span class="screenshot-icon">🔍</span>
+            </div>
+          </div>
+          <div class="screenshot-item" data-screenshot="3" onclick="openLightboxWithImage('assets/screenshot-3.png')">
+            <img src="assets/screenshot-3.png" alt="GlucoPlan screenshot 3" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+            <div class="screenshot-overlay">
+              <span class="screenshot-icon">🔍</span>
+            </div>
+          </div>
+          <div class="screenshot-item" data-screenshot="4" onclick="openLightboxWithImage('assets/screenshot-4.png')">
+            <img src="assets/screenshot-4.png" alt="GlucoPlan screenshot 4" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+            <div class="screenshot-overlay">
+              <span class="screenshot-icon">🔍</span>
+            </div>
+          </div>
+          <div class="screenshot-item" data-screenshot="5" onclick="openLightboxWithImage('assets/screenshot-5.png')">
+            <img src="assets/screenshot-5.png" alt="GlucoPlan screenshot 5" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+            <div class="screenshot-overlay">
+              <span class="screenshot-icon">🔍</span>
+            </div>
+          </div>
+          <div class="screenshot-item" data-screenshot="6" onclick="openLightboxWithImage('assets/screenshot-6.png')">
+            <img src="assets/screenshot-6.png" alt="GlucoPlan screenshot 6" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+            <div class="screenshot-overlay">
+              <span class="screenshot-icon">🔍</span>
+            </div>
+          </div>
+          <div class="screenshot-item" data-screenshot="7" onclick="openLightboxWithImage('assets/screenshot-7.png')">
+            <img src="assets/screenshot-7.png" alt="GlucoPlan screenshot 7" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+            <div class="screenshot-overlay">
+              <span class="screenshot-icon">🔍</span>
+            </div>
+          </div>
+          <div class="screenshot-item" data-screenshot="8" onclick="openLightboxWithImage('assets/screenshot-8.png')">
+            <img src="assets/screenshot-8.png" alt="GlucoPlan screenshot 8" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+            <div class="screenshot-overlay">
+              <span class="screenshot-icon">🔍</span>
+            </div>
+          </div>
+          <div class="screenshot-item" data-screenshot="9" onclick="openLightboxWithImage('assets/screenshot-9.png')">
+            <img src="assets/screenshot-9.png" alt="GlucoPlan screenshot 9" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+            <div class="screenshot-overlay">
+              <span class="screenshot-icon">🔍</span>
+            </div>
+          </div>
+        </div>
+        <p style="color: var(--muted2); font-size: 0.9rem; margin-top: 16px; text-align: center;">
+          Click on any screenshot to view it in full size with zoom controls
+        </p>
+      </div>
+    </section>
+
+    <div id="download-separator" class="section-separator" style="scroll-margin-top: 80px;"></div>
+
+    <section id="download" class="section">
+      <div class="container">
+        <h2>Download the App</h2>
+        <p style="color: var(--muted); margin-bottom: 32px; max-width: 700px; margin-left: auto; margin-right: auto;">
+          Get <strong>Insulin Doses Calculator</strong> on your device. Available on the App Store, Google Play, or purchase directly from our website.
+        </p>
+        
+        <p style="text-align: center; font-size: 1.2rem; font-weight: 600; margin-bottom: 32px; color: var(--text, #000);">
+          Coming Soon
+        </p>
+        
+        <div class="download-buttons">
+          <a href="#" class="download-button app-store" aria-label="Download on the App Store">
+            <img id="apple-badge" src="assets/Apple%3AUS%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Download on the App Store" class="store-badge-img" />
+          </a>
+          
+          <a href="#" class="download-button google-play" aria-label="Get it on Google Play">
+            <img id="google-badge" src="assets/Google%3Apng/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" class="store-badge-img" />
+          </a>
+          
+          <a href="#" class="download-button website-download" aria-label="Purchase from website" onclick="event.preventDefault(); alert('Credit card payment page coming soon!');">
+            <img src="assets/website-download-badge.png" alt="Purchase from Website" class="store-badge-img" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div id="contact-separator" class="section-separator" style="scroll-margin-top: 80px;"></div>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>If you want to be notified when the full website launches, email:</p>
+        <p class="contact">
+          <a href="mailto:support@insulindosescalculator.com">support@insulindosescalculator.com</a>
+        </p>
+
+        <details class="details">
+          <summary>Medical & usage disclaimer</summary>
+          <div class="details-body">
+            <p>
+              Insulin dosing can be complex and should be personalised. This app/website is an informational tool and
+              is not a substitute for professional medical advice, diagnosis, or treatment. Never disregard professional
+              advice because of something you read here. In an emergency, contact your local emergency services.
+            </p>
+          </div>
+        </details>
+
+        <footer class="footer">
+          <span>© <span id="year"></span> InsulinDosesCalculator.com</span>
+          <span class="sep">•</span>
+          <a href="privacy.html">Privacy Policy</a>
+          <span class="sep">•</span>
+          <a href="terms.html">Terms & Conditions</a>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <img id="lightbox-image" src="" alt="GlucoPlan app preview" />
+      <div class="lightbox-controls">
+        <button class="lightbox-btn" onclick="zoomIn()" title="Zoom In">+</button>
+        <button class="lightbox-btn" onclick="zoomOut()" title="Zoom Out">−</button>
+        <button class="lightbox-btn" onclick="resetZoom()" title="Reset Zoom">⌂</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Theme Toggle Functionality
+    function initTheme() {
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      const html = document.documentElement;
+      
+      // Check for saved theme preference or default to light mode
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      html.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme, themeIcon);
+      
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+          const currentTheme = html.getAttribute('data-theme');
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          html.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+          updateThemeIcon(newTheme, themeIcon);
+        });
+      }
+    }
+    
+    function updateThemeIcon(theme, iconElement) {
+      if (iconElement) {
+        iconElement.textContent = theme === 'dark' ? '☀️' : '🌙';
+      }
+    }
+    
+    // Initialize theme on page load
+    initTheme();
+    
+    let currentZoom = 1;
+    const minZoom = 0.5;
+    const maxZoom = 5;
+    const zoomStep = 0.25;
+    
+    function hideHeroCard() {
+      const heroCard = document.querySelector('.hero-card');
+      if (heroCard) {
+        heroCard.style.display = 'none';
+      }
+    }
+    
+    function checkIfAnyScreenshotsVisible() {
+      const screenshotItems = document.querySelectorAll('.screenshot-item');
+      const screenshotsSection = document.getElementById('screenshots');
+      const screenshotsSeparator = document.getElementById('screenshots-separator');
+      const heroCard = document.querySelector('.hero-card');
+      
+      let hasVisibleScreenshots = false;
+      screenshotItems.forEach(item => {
+        // Check if item is visible (not hidden by style)
+        const isHidden = item.style.display === 'none';
+        if (!isHidden) {
+          // Check if the image actually loaded successfully
+          const img = item.querySelector('img');
+          if (img && img.complete && img.naturalHeight > 0) {
+            hasVisibleScreenshots = true;
+          }
+        }
+      });
+      
+      // If no screenshots are visible, hide the screenshots section and hero card
+      if (!hasVisibleScreenshots) {
+        if (screenshotsSection) screenshotsSection.style.display = 'none';
+        if (screenshotsSeparator) screenshotsSeparator.style.display = 'none';
+        if (heroCard) heroCard.style.display = 'none';
+      } else {
+        if (screenshotsSection) screenshotsSection.style.display = '';
+        if (screenshotsSeparator) screenshotsSeparator.style.display = '';
+        if (heroCard) heroCard.style.display = '';
+      }
+    }
+    
+    // Make functions globally available for onerror handlers
+    window.checkIfAnyScreenshotsVisible = checkIfAnyScreenshotsVisible;
+    window.hideHeroCard = hideHeroCard;
+    
+    // Run check when page loads and after images load
+    window.addEventListener('load', function() {
+      // Check after images have had time to load or error
+      setTimeout(checkIfAnyScreenshotsVisible, 1000);
+    });
+    
+    // Location-based badge images
+    function updateDownloadBadges() {
+      const locale = navigator.language || navigator.userLanguage || 'en-US';
+      const lang = locale.split('-')[0].toLowerCase();
+      const country = locale.split('-')[1] ? locale.split('-')[1].toUpperCase() : 'US';
+      
+      // Apple country code mapping
+      const appleCountryMap = {
+        'US': 'US', 'GB': 'US', 'AU': 'US', 'NZ': 'US', 'IE': 'US', 'CA': 'CAES',
+        'FR': 'FR', 'BE': 'FR', 'CH': 'FR', 'LU': 'FR', 'MC': 'FR',
+        'DE': 'DE', 'AT': 'DE', 'LI': 'DE',
+        'ES': 'ES', 'MX': 'ESMX',
+        'IT': 'IT', 'SM': 'IT', 'VA': 'IT',
+        'PT': 'PTPT', 'BR': 'PTBR',
+        'NL': 'NL',
+        'RU': 'RU', 'BY': 'RU', 'KZ': 'RU', 'KG': 'RU',
+        'JP': 'JP',
+        'CN': 'CN(SC)', 'TW': 'HKTW(TC)', 'HK': 'HKTW(TC)',
+        'KR': 'KR',
+        'AR': 'AR',
+        'TR': 'TR',
+        'PL': 'PL',
+        'NO': 'NO', 'DK': 'DK', 'SE': 'SE', 'FI': 'FI',
+        'CZ': 'CZ', 'SK': 'SK',
+        'GR': 'GR', 'CY': 'GR',
+        'HU': 'HU', 'RO': 'RO', 'BG': 'BG',
+        'TH': 'TH', 'VN': 'VN', 'ID': 'ID', 'MY': 'MY', 'PH': 'PH', 'SG': 'MY',
+        'IL': 'IL', 'SA': 'AR', 'AE': 'AR', 'EG': 'AR',
+        'IN': 'IN',
+        'UA': 'UA',
+        'HR': 'HR', 'SI': 'SI', 'RS': 'HR', 'BA': 'HR', 'ME': 'HR', 'MK': 'HR',
+        'LT': 'LT', 'LV': 'LV', 'EE': 'EE',
+        'AZ': 'AZ', 'AM': 'AR', 'GE': 'RU',
+        'MT': 'MT', 'IS': 'NO'
+      };
+      
+      // Google language mapping
+      const googleLangMap = {
+        'en': 'English', 'es': 'Spanish', 'fr': 'French', 'de': 'German', 'it': 'Italian',
+        'pt': 'Portuguese', 'nl': 'Dutch', 'ru': 'Russian', 'ja': 'Japanese',
+        'zh': 'Chinese', 'ko': 'Korean', 'ar': 'Arabic-Saudi-Arabia', 'tr': 'Turkish',
+        'pl': 'Polish', 'no': 'Norwegian', 'da': 'Danish', 'sv': 'Swedish', 'fi': 'Finnish',
+        'cs': 'Czech', 'sk': 'Slovak', 'el': 'Greek', 'hu': 'Hungarian', 'ro': 'Romanian',
+        'bg': 'Bulgarian', 'th': 'Thai', 'vi': 'Vietnamese', 'id': 'Indonesian',
+        'ms': 'Malay', 'tl': 'Filipino', 'he': 'Hebrew', 'hi': 'Hindi', 'uk': 'Ukrainian',
+        'hr': 'Croatian', 'sl': 'Slovenian', 'sr': 'Serbian', 'lt': 'Lithuanian',
+        'lv': 'Latvian', 'et': 'Estonian', 'az': 'Azerbaijani', 'hy': 'Armenian',
+        'ka': 'Georgian', 'mt': 'Maltese', 'is': 'Icelandic', 'ga': 'Irish',
+        'eu': 'Basque', 'ca': 'Catalan', 'bs': 'Bosnian', 'mk': 'Macedonian',
+        'sq': 'Albanian', 'my': 'Burmese', 'bn': 'Bengali', 'be': 'Belarusian'
+      };
+      
+      // Get Apple country code
+      let appleCountry = appleCountryMap[country] || appleCountryMap[locale.split('-')[0].toUpperCase()] || 'US';
+      
+      // Handle special cases
+      if (country === 'CA' && lang === 'fr') appleCountry = 'FRCA';
+      if (country === 'ES' && lang === 'ca') appleCountry = 'CAES';
+      
+      // Get Google language name
+      let googleLang = googleLangMap[lang] || googleLangMap[locale.toLowerCase()] || 'English';
+      
+      // Special handling for Chinese variants
+      if (lang === 'zh') {
+        if (country === 'CN' || country === 'SG') googleLang = 'Chinese-Simplified';
+        else if (country === 'TW' || country === 'HK') googleLang = 'Chinese-Traditional';
+        else googleLang = 'Chinese-Simplified';
+      }
+      
+      // Update Apple badge
+      const appleBadge = document.getElementById('apple-badge');
+      if (appleBadge) {
+        // Construct Apple badge path - try most common pattern first
+        let applePath = '';
+        
+        // Special cases with known paths
+        if (appleCountry === 'US') {
+          applePath = 'assets/Apple%3AUS%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg';
+        } else if (appleCountry === 'HR') {
+          applePath = 'assets/Apple%3AHR%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_HR_blk_082124.svg';
+        } else if (appleCountry === 'CAES') {
+          applePath = 'assets/Apple%3ACAES%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_CAES_blk_082124.svg';
+        } else {
+          // Try standard pattern with common date suffix
+          applePath = `assets/Apple%3A${appleCountry}%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_${appleCountry}_RGB_blk_100317.svg`;
+        }
+        
+        appleBadge.src = applePath;
+        appleBadge.onerror = function() {
+          // Fallback to default badge
+          this.onerror = null; // Prevent infinite loop
+          this.src = 'assets/Apple%3AUS%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg';
+        };
+      }
+      
+      // Update Google badge
+      const googleBadge = document.getElementById('google-badge');
+      if (googleBadge) {
+        const googleFilename = `assets/Google%3Apng/GetItOnGooglePlay_Badge_Web_color_${googleLang}.png`;
+        googleBadge.src = googleFilename;
+        googleBadge.onerror = function() {
+          // Fallback to default
+          this.src = 'assets/Google%3Apng/GetItOnGooglePlay_Badge_Web_color_English.png';
+        };
+      }
+    }
+    
+    // Update badges on page load
+    window.addEventListener('load', updateDownloadBadges);
+    
+    function openLightbox() {
+      const previewImage = document.querySelector('.preview-image');
+      if (previewImage) {
+        openLightboxWithImage(previewImage.src);
+      }
+    }
+    
+    function openLightboxWithImage(imageSrc) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightbox-image');
+      
+      lightboxImage.src = imageSrc;
+      lightbox.style.display = 'flex';
+      currentZoom = 1;
+      lightboxImage.style.transform = 'scale(1)';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLightbox(event) {
+      if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.style.display = 'none';
+        document.body.style.overflow = '';
+        currentZoom = 1;
+        document.getElementById('lightbox-image').style.transform = 'scale(1)';
+      }
+    }
+    
+    function zoomIn() {
+      if (currentZoom < maxZoom) {
+        currentZoom = Math.min(currentZoom + zoomStep, maxZoom);
+        updateZoom();
+      }
+    }
+    
+    function zoomOut() {
+      if (currentZoom > minZoom) {
+        currentZoom = Math.max(currentZoom - zoomStep, minZoom);
+        updateZoom();
+      }
+    }
+    
+    function resetZoom() {
+      currentZoom = 1;
+      updateZoom();
+    }
+    
+    function updateZoom() {
+      const lightboxImage = document.getElementById('lightbox-image');
+      lightboxImage.style.transform = `scale(${currentZoom})`;
+    }
+    
+    // Close on Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox.style.display === 'flex') {
+          closeLightbox({ target: { id: 'lightbox' } });
+        }
+      }
+    });
+    
+    // Mobile menu toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('.nav');
+    
+    if (mobileMenuToggle) {
+      mobileMenuToggle.addEventListener('click', function() {
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !isExpanded);
+        nav.classList.toggle('nav-open');
+        this.classList.toggle('active');
+      });
+      
+      // Close menu when clicking on a nav link
+      const navLinks = nav.querySelectorAll('a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          nav.classList.remove('nav-open');
+          mobileMenuToggle.classList.remove('active');
+        });
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!nav.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          nav.classList.remove('nav-open');
+          mobileMenuToggle.classList.remove('active');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
