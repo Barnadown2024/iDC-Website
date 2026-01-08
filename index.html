@@ -6,6 +6,7 @@
   <meta name="description" content="Insulin Doses Calculator — a fast, simple insulin bolus calculator and meal planning companion. Website coming soon." />
   <meta name="theme-color" content="#FFFFFF" />
   <title>Insulin Doses Calculator — Coming Soon</title>
+  <link rel="icon" href="assets/idc-logo.webp" type="image/webp" />
   <link rel="icon" href="assets/idc-logo.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +17,10 @@
   <header class="header">
     <a class="brand" href="https://insulindosescalculator.com/" aria-label="Insulin Doses Calculator home">
       <span class="logo" aria-hidden="true">
-        <img src="assets/idc-logo.png" alt="Insulin Doses Calculator logo" />
+        <picture>
+          <source srcset="assets/idc-logo.webp" type="image/webp" />
+          <img src="assets/idc-logo.png" alt="Insulin Doses Calculator logo" />
+        </picture>
       </span>
       <span class="brand-text">
         <span class="brand-name">Insulin Doses Calculator</span>
@@ -75,7 +79,10 @@
 
         <div class="hero-card" aria-label="App preview">
           <div class="mock">
-            <img src="assets/glucoplan-preview.png" alt="GlucoPlan app preview" class="preview-image" onclick="openLightbox()" style="cursor: pointer;" onerror="hideHeroCard();" />
+            <picture>
+              <source srcset="assets/glucoplan-preview.webp" type="image/webp" />
+              <img src="assets/glucoplan-preview.png" alt="GlucoPlan app preview" class="preview-image" onclick="openLightbox()" style="cursor: pointer;" onerror="hideHeroCard();" />
+            </picture>
           </div>
           <div class="card-footer">
             <span>Coming soon: full site, FAQs, privacy info, and downloads.</span>
@@ -147,20 +154,29 @@
         <h2 style="margin-bottom: 24px;">Screenshots</h2>
         <p style="color: var(--muted); margin-bottom: 24px;">Get a taste of what the app will look like:</p>
         <div class="screenshots-gallery">
-          <div class="screenshot-item" data-screenshot="1" onclick="openLightboxWithImage('assets/screenshot-1.png')">
-            <img src="assets/screenshot-1.png" alt="GlucoPlan screenshot 1" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+          <div class="screenshot-item" data-screenshot="1" onclick="openLightboxWithImage('assets/screenshot-1.webp', 'assets/screenshot-1.png')">
+            <picture>
+              <source srcset="assets/screenshot-1.webp" type="image/webp" />
+              <img src="assets/screenshot-1.png" alt="GlucoPlan screenshot 1" onerror="this.parentElement.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+            </picture>
             <div class="screenshot-overlay">
               <span class="screenshot-icon">🔍</span>
             </div>
           </div>
-          <div class="screenshot-item" data-screenshot="2" onclick="openLightboxWithImage('assets/screenshot-2.png')">
-            <img src="assets/screenshot-2.png" alt="GlucoPlan screenshot 2" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+          <div class="screenshot-item" data-screenshot="2" onclick="openLightboxWithImage('assets/screenshot-2.webp', 'assets/screenshot-2.png')">
+            <picture>
+              <source srcset="assets/screenshot-2.webp" type="image/webp" />
+              <img src="assets/screenshot-2.png" alt="GlucoPlan screenshot 2" onerror="this.parentElement.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+            </picture>
             <div class="screenshot-overlay">
               <span class="screenshot-icon">🔍</span>
             </div>
           </div>
-          <div class="screenshot-item" data-screenshot="3" onclick="openLightboxWithImage('assets/screenshot-3.png')">
-            <img src="assets/screenshot-3.png" alt="GlucoPlan screenshot 3" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+          <div class="screenshot-item" data-screenshot="3" onclick="openLightboxWithImage('assets/screenshot-3.webp', 'assets/screenshot-3.png')">
+            <picture>
+              <source srcset="assets/screenshot-3.webp" type="image/webp" />
+              <img src="assets/screenshot-3.png" alt="GlucoPlan screenshot 3" onerror="this.parentElement.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+            </picture>
             <div class="screenshot-overlay">
               <span class="screenshot-icon">🔍</span>
             </div>
@@ -189,8 +205,11 @@
               <span class="screenshot-icon">🔍</span>
             </div>
           </div>
-          <div class="screenshot-item" data-screenshot="8" onclick="openLightboxWithImage('assets/screenshot-8.png')">
-            <img src="assets/screenshot-8.png" alt="GlucoPlan screenshot 8" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+          <div class="screenshot-item" data-screenshot="8" onclick="openLightboxWithImage('assets/screenshot-8.webp', 'assets/screenshot-8.png')">
+            <picture>
+              <source srcset="assets/screenshot-8.webp" type="image/webp" />
+              <img src="assets/screenshot-8.png" alt="GlucoPlan screenshot 8" onerror="this.parentElement.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+            </picture>
             <div class="screenshot-overlay">
               <span class="screenshot-icon">🔍</span>
             </div>
@@ -223,15 +242,24 @@
         
         <div class="download-buttons">
           <a href="#" class="download-button app-store" aria-label="Download on the App Store">
-            <img id="apple-badge" src="assets/Apple%3AUS%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Download on the App Store" class="store-badge-img" />
+            <picture id="apple-badge-picture">
+              <source srcset="assets/Apple%3AUS%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.webp" type="image/webp" />
+              <img id="apple-badge" src="assets/Apple%3AUS%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Download on the App Store" class="store-badge-img" />
+            </picture>
           </a>
           
           <a href="#" class="download-button google-play" aria-label="Get it on Google Play">
-            <img id="google-badge" src="assets/Google%3Apng/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" class="store-badge-img" />
+            <picture id="google-badge-picture">
+              <source srcset="assets/Google%3Apng/GetItOnGooglePlay_Badge_Web_color_English.webp" type="image/webp" />
+              <img id="google-badge" src="assets/Google%3Apng/GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play" class="store-badge-img" />
+            </picture>
           </a>
           
           <a href="#" class="download-button website-download" aria-label="Purchase from website" onclick="event.preventDefault(); alert('Credit card payment page coming soon!');">
-            <img src="assets/website-download-badge.png" alt="Purchase from Website" class="store-badge-img" />
+            <picture>
+              <source srcset="assets/website-download-badge.webp" type="image/webp" />
+              <img src="assets/website-download-badge.png" alt="Purchase from Website" class="store-badge-img" />
+            </picture>
           </a>
         </div>
       </div>
@@ -273,7 +301,9 @@
   <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
     <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
     <div class="lightbox-content" onclick="event.stopPropagation()">
-      <img id="lightbox-image" src="" alt="GlucoPlan app preview" />
+      <picture id="lightbox-picture">
+        <img id="lightbox-image" src="" alt="GlucoPlan app preview" />
+      </picture>
       <div class="lightbox-controls">
         <button class="lightbox-btn" onclick="zoomIn()" title="Zoom In">+</button>
         <button class="lightbox-btn" onclick="zoomOut()" title="Zoom Out">−</button>
@@ -339,8 +369,9 @@
         // Check if item is visible (not hidden by style)
         const isHidden = item.style.display === 'none';
         if (!isHidden) {
-          // Check if the image actually loaded successfully
-          const img = item.querySelector('img');
+          // Check if the image actually loaded successfully (may be inside picture element)
+          const picture = item.querySelector('picture');
+          const img = picture ? picture.querySelector('img') : item.querySelector('img');
           if (img && img.complete && img.naturalHeight > 0) {
             hasVisibleScreenshots = true;
           }
@@ -439,40 +470,69 @@
       }
       
       // Update Apple badge
-      const appleBadge = document.getElementById('apple-badge');
-      if (appleBadge) {
-        // Construct Apple badge path - try most common pattern first
-        let applePath = '';
+      const appleBadgePicture = document.getElementById('apple-badge-picture');
+      if (appleBadgePicture) {
+        const appleBadge = appleBadgePicture.querySelector('#apple-badge');
+        const appleWebpSource = appleBadgePicture.querySelector('source[type="image/webp"]');
+        
+        // Construct Apple badge paths - try most common pattern first
+        let appleSvgPath = '';
+        let appleWebpPath = '';
         
         // Special cases with known paths
         if (appleCountry === 'US') {
-          applePath = 'assets/Apple%3AUS%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg';
+          appleSvgPath = 'assets/Apple%3AUS%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg';
+          appleWebpPath = 'assets/Apple%3AUS%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.webp';
         } else if (appleCountry === 'HR') {
-          applePath = 'assets/Apple%3AHR%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_HR_blk_082124.svg';
+          appleSvgPath = 'assets/Apple%3AHR%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_HR_blk_082124.svg';
+          appleWebpPath = 'assets/Apple%3AHR%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_HR_blk_082124.webp';
         } else if (appleCountry === 'CAES') {
-          applePath = 'assets/Apple%3ACAES%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_CAES_blk_082124.svg';
+          appleSvgPath = 'assets/Apple%3ACAES%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_CAES_blk_082124.svg';
+          appleWebpPath = 'assets/Apple%3ACAES%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_CAES_blk_082124.webp';
         } else {
           // Try standard pattern with common date suffix
-          applePath = `assets/Apple%3A${appleCountry}%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_${appleCountry}_RGB_blk_100317.svg`;
+          appleSvgPath = `assets/Apple%3A${appleCountry}%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_${appleCountry}_RGB_blk_100317.svg`;
+          appleWebpPath = `assets/Apple%3A${appleCountry}%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_${appleCountry}_RGB_blk_100317.webp`;
         }
         
-        appleBadge.src = applePath;
-        appleBadge.onerror = function() {
-          // Fallback to default badge
-          this.onerror = null; // Prevent infinite loop
-          this.src = 'assets/Apple%3AUS%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg';
-        };
+        if (appleWebpSource) {
+          appleWebpSource.srcset = appleWebpPath;
+        }
+        if (appleBadge) {
+          appleBadge.src = appleSvgPath;
+          appleBadge.onerror = function() {
+            // Fallback to default badge
+            this.onerror = null; // Prevent infinite loop
+            const defaultSvg = 'assets/Apple%3AUS%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg';
+            const defaultWebp = 'assets/Apple%3AUS%3ADownload_on_App_Store%3ABlack_lockup%3ASVG/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.webp';
+            if (appleWebpSource) appleWebpSource.srcset = defaultWebp;
+            this.src = defaultSvg;
+          };
+        }
       }
       
       // Update Google badge
-      const googleBadge = document.getElementById('google-badge');
-      if (googleBadge) {
-        const googleFilename = `assets/Google%3Apng/GetItOnGooglePlay_Badge_Web_color_${googleLang}.png`;
-        googleBadge.src = googleFilename;
-        googleBadge.onerror = function() {
-          // Fallback to default
-          this.src = 'assets/Google%3Apng/GetItOnGooglePlay_Badge_Web_color_English.png';
-        };
+      const googleBadgePicture = document.getElementById('google-badge-picture');
+      if (googleBadgePicture) {
+        const googleBadge = googleBadgePicture.querySelector('#google-badge');
+        const googleWebpSource = googleBadgePicture.querySelector('source[type="image/webp"]');
+        
+        const googlePngFilename = `assets/Google%3Apng/GetItOnGooglePlay_Badge_Web_color_${googleLang}.png`;
+        const googleWebpFilename = `assets/Google%3Apng/GetItOnGooglePlay_Badge_Web_color_${googleLang}.webp`;
+        
+        if (googleWebpSource) {
+          googleWebpSource.srcset = googleWebpFilename;
+        }
+        if (googleBadge) {
+          googleBadge.src = googlePngFilename;
+          googleBadge.onerror = function() {
+            // Fallback to default
+            const defaultPng = 'assets/Google%3Apng/GetItOnGooglePlay_Badge_Web_color_English.png';
+            const defaultWebp = 'assets/Google%3Apng/GetItOnGooglePlay_Badge_Web_color_English.webp';
+            if (googleWebpSource) googleWebpSource.srcset = defaultWebp;
+            this.src = defaultPng;
+          };
+        }
       }
     }
     
@@ -482,15 +542,45 @@
     function openLightbox() {
       const previewImage = document.querySelector('.preview-image');
       if (previewImage) {
-        openLightboxWithImage(previewImage.src);
+        const picture = previewImage.closest('picture');
+        if (picture) {
+          const webpSource = picture.querySelector('source[type="image/webp"]');
+          const pngImg = picture.querySelector('img');
+          openLightboxWithImage(webpSource ? webpSource.srcset : null, pngImg ? pngImg.src : previewImage.src);
+        } else {
+          openLightboxWithImage(null, previewImage.src);
+        }
       }
     }
     
-    function openLightboxWithImage(imageSrc) {
+    function openLightboxWithImage(webpSrc, pngSrc) {
       const lightbox = document.getElementById('lightbox');
+      const lightboxPicture = document.getElementById('lightbox-picture');
       const lightboxImage = document.getElementById('lightbox-image');
       
-      lightboxImage.src = imageSrc;
+      // Handle backward compatibility: if only one parameter is provided
+      if (pngSrc === undefined) {
+        pngSrc = webpSrc;
+        webpSrc = null;
+      }
+      
+      // Clear existing sources
+      const existingSource = lightboxPicture.querySelector('source[type="image/webp"]');
+      if (existingSource) {
+        existingSource.remove();
+      }
+      
+      // Add WebP source if available and different from PNG
+      if (webpSrc && webpSrc !== pngSrc) {
+        const source = document.createElement('source');
+        source.srcset = webpSrc;
+        source.type = 'image/webp';
+        lightboxPicture.insertBefore(source, lightboxImage);
+      }
+      
+      // Set PNG as fallback
+      lightboxImage.src = pngSrc;
+      
       lightbox.style.display = 'flex';
       currentZoom = 1;
       lightboxImage.style.transform = 'scale(1)';
@@ -503,7 +593,10 @@
         lightbox.style.display = 'none';
         document.body.style.overflow = '';
         currentZoom = 1;
-        document.getElementById('lightbox-image').style.transform = 'scale(1)';
+        const lightboxImage = document.getElementById('lightbox-image');
+        if (lightboxImage) {
+          lightboxImage.style.transform = 'scale(1)';
+        }
       }
     }
     
@@ -528,7 +621,9 @@
     
     function updateZoom() {
       const lightboxImage = document.getElementById('lightbox-image');
-      lightboxImage.style.transform = `scale(${currentZoom})`;
+      if (lightboxImage) {
+        lightboxImage.style.transform = `scale(${currentZoom})`;
+      }
     }
     
     // Close on Escape key
