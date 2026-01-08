@@ -1,0 +1,110 @@
+# robots.txt for insulindosescalculator.com
+# Optimized for all major search engines
+
+# Allow all search engines to crawl the entire site
+User-agent: *
+Allow: /
+
+# Disallow crawling of common non-content files and directories
+Disallow: /*.json$
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.vscode/
+Disallow: /.idea/
+
+# Allow all image formats (important for SEO and image search)
+Allow: /assets/
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+Allow: /*.ico$
+
+# Allow CSS and JS for proper rendering
+Allow: /*.css$
+Allow: /*.js$
+
+# Crawl-delay: Optional delay between requests (in seconds)
+# Most search engines respect this. Set to 0 for no delay.
+Crawl-delay: 0
+
+# Specific rules for major search engines
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Google Images
+User-agent: Googlebot-Image
+Allow: /
+Allow: /assets/
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# Bing Images
+User-agent: msnbot-media
+Allow: /
+Allow: /assets/
+
+# Yahoo
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0
+
+# Yandex
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+# Yandex Images
+User-agent: YandexImages
+Allow: /
+Allow: /assets/
+
+# Baidu (China)
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+# Baidu Images
+User-agent: Baiduspider-image
+Allow: /
+Allow: /assets/
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 0
+
+# Facebook
+User-agent: facebookexternalhit
+Allow: /
+
+# Twitter
+User-agent: Twitterbot
+Allow: /
+
+# LinkedIn
+User-agent: LinkedInBot
+Allow: /
+
+# WhatsApp
+User-agent: WhatsApp
+Allow: /
+
+# Telegram
+User-agent: TelegramBot
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+# Sitemap location
+Sitemap: https://insulindosescalculator.com/sitemap.xml
