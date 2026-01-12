@@ -1,0 +1,20 @@
+# Cloudflare Pages configuration
+# This file is used for local development with Wrangler CLI
+
+name = "idc-website"
+compatibility_date = "2024-01-01"
+
+# D1 Database binding
+# Replace 'your-database-id' with your actual D1 database ID
+# Get this from: Cloudflare Dashboard > Workers & Pages > D1 > Your Database
+[[d1_databases]]
+binding = "DB"
+database_name = "idc-expressions"
+database_id = "your-database-id-here"
+
+# Environment variables (optional)
+# [vars]
+# TURNSTILE_SECRET_KEY = "your-turnstile-secret-key"
+
+# For production, set these in Cloudflare Dashboard:
+# Workers & Pages > Your Project > Settings > Environment Variables

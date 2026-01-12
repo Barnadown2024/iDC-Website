@@ -1,0 +1,46 @@
+<form id="interestForm">
+  <h3>Expressions of Interest</h3>
+  <p>
+    The development process of the app is nearing completion. Expressions of interest are being sought by interested parties,
+    who would like to use the Insulin Calculator as part of their Food Management Diabetes control in conjunction with their
+    local diabetic clinical team.
+  </p>
+
+  <label>
+    Name
+    <input name="name" required />
+  </label>
+
+  <label>
+    Email
+    <input name="email" type="email" required />
+  </label>
+
+  <label>
+    Country of origin
+    <input name="country" required />
+  </label>
+
+  <button type="submit">Submit</button>
+
+  <p id="formStatus" aria-live="polite"></p>
+</form>
+
+<script>
+document.getElementById("interestForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const data = Object.fromEntries(new FormData(form).entries());
+
+  const res = await fetch("/api/interest", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  const out = await res.json().catch(() => ({}));
+  document.getElementById("formStatus").textContent =
+    res.ok ? "Thanks — we’ll be in touch." : (out.error || "Something went wrong. Please try again.");
+  if (res.ok) form.reset();
+});
+</script>

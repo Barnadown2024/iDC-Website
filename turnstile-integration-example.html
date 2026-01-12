@@ -1,0 +1,21 @@
+<!-- 
+  Example: How to add Cloudflare Turnstile to your form
+  Add this code to your index.html form before the submit button
+-->
+
+<!-- Add this div before the submit button -->
+<div class="form-group">
+  <label>Verification</label>
+  <div class="cf-turnstile" data-sitekey="YOUR_SITE_KEY_HERE"></div>
+</div>
+
+<!-- Add this script before </body> tag -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<!-- 
+  Steps:
+  1. Get your Site Key from Cloudflare Turnstile dashboard
+  2. Replace YOUR_SITE_KEY_HERE with your actual site key
+  3. Add your Secret Key to Cloudflare Pages environment variables as TURNSTILE_SECRET_KEY
+  4. Uncomment the Turnstile verification code in functions/api/interest.js
+-->
