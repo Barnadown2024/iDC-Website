@@ -16,11 +16,42 @@
       margin-bottom: 30px;
       padding-bottom: 20px;
       border-bottom: 2px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
     }
     
     .admin-header h1 {
       margin: 0 0 10px 0;
       color: var(--text);
+    }
+    
+    .admin-header-content {
+      flex: 1;
+    }
+    
+    .logout-button {
+      padding: 0.6rem 1.2rem;
+      background: linear-gradient(135deg, rgba(220,53,69,.95), rgba(200,35,51,.95));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+    
+    .logout-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(220,53,69,.3);
+      background: linear-gradient(135deg, rgba(200,35,51,.95), rgba(180,25,41,.95));
+    }
+    
+    .logout-button:active {
+      transform: translateY(0);
     }
     
     .admin-controls {
@@ -216,6 +247,16 @@
     }
     
     @media (max-width: 768px) {
+      .admin-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .logout-button {
+        width: 100%;
+        margin-top: 10px;
+      }
+      
       .admin-controls {
         flex-direction: column;
       }
@@ -239,8 +280,11 @@
 <body>
   <div class="admin-container">
     <div class="admin-header">
-      <h1>Expressions of Interest - Admin Dashboard</h1>
-      <p style="color: var(--muted); margin: 0;">View and manage form submissions</p>
+      <div class="admin-header-content">
+        <h1>Expressions of Interest - Admin Dashboard</h1>
+        <p style="color: var(--muted); margin: 0;">View and manage form submissions</p>
+      </div>
+      <button class="logout-button" onclick="logout()" id="logoutBtn" style="display: none;">Logout</button>
     </div>
 
     <!-- Authentication Section -->
@@ -326,10 +370,24 @@
     if (apiKey) {
       document.getElementById('authSection').style.display = 'none';
       document.getElementById('dashboard').style.display = 'block';
+      document.getElementById('logoutBtn').style.display = 'block';
       loadSubmissions();
     } else {
       document.getElementById('authSection').style.display = 'block';
       document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('logoutBtn').style.display = 'none';
+    }
+
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('admin_api_key');
+        apiKey = null;
+        document.getElementById('authSection').style.display = 'block';
+        document.getElementById('dashboard').style.display = 'none';
+        document.getElementById('logoutBtn').style.display = 'none';
+        document.getElementById('apiKeyInput').value = '';
+        document.getElementById('authError').style.display = 'none';
+      }
     }
 
     function authenticate() {
@@ -349,6 +407,7 @@
           localStorage.setItem('admin_api_key', apiKey);
           document.getElementById('authSection').style.display = 'none';
           document.getElementById('dashboard').style.display = 'block';
+          document.getElementById('logoutBtn').style.display = 'block';
           error.style.display = 'none';
         } else {
           error.textContent = 'Invalid API key. Please check and try again.';
@@ -392,8 +451,10 @@
           if (response.status === 401) {
             // Unauthorized - clear API key
             localStorage.removeItem('admin_api_key');
+            apiKey = null;
             document.getElementById('authSection').style.display = 'block';
             document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('logoutBtn').style.display = 'none';
             return false;
           }
           throw new Error(data.error || 'Failed to load submissions');
