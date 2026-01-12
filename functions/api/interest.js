@@ -92,6 +92,13 @@ export async function onRequestPost(context) {
       );
     }
     
+    // Check if this email already exists (optional - allows updates/resubmissions)
+    // For expressions of interest, we'll allow duplicates but could optionally update instead
+    const existing = await env.DB.prepare(
+      `SELECT id FROM expressions_of_interest WHERE email = ? ORDER BY submitted_at DESC LIMIT 1`
+    ).bind(email).first();
+    
+    // Insert new submission (allowing duplicates - user might want to update info)
     const result = await env.DB.prepare(
       `INSERT INTO expressions_of_interest (title, name, email, country, submitted_at)
        VALUES (?, ?, ?, ?, datetime('now'))`
@@ -120,12 +127,26 @@ export async function onRequestPost(context) {
   } catch (error) {
     console.error('Error processing form submission:', error);
     
+    // Provide more specific error messages
+    let errorMessage = 'An error occurred while processing your submission. Please try again later.';
+    let statusCode = 500;
+    
+    // Check for specific database errors
+    if (error.message && error.message.includes('UNIQUE constraint')) {
+      errorMessage = 'This email address has already been registered. If you need to update your information, please contact us at support@insulindosescalculator.com';
+      statusCode = 409; // Conflict
+    } else if (error.message && error.message.includes('SQLITE_ERROR')) {
+      errorMessage = 'Database error. Please try again or contact support@insulindosescalculator.com';
+      statusCode = 500;
+    }
+    
     return new Response(
       JSON.stringify({ 
-        error: 'An error occurred while processing your submission. Please try again later.' 
+        error: errorMessage,
+        details: process.env.NODE_ENV === 'development' ? error.message : undefined
       }),
       { 
-        status: 500,
+        status: statusCode,
         headers: { 'Content-Type': 'application/json' }
       }
     );

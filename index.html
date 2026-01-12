@@ -1019,16 +1019,22 @@
             body: JSON.stringify(data),
           });
 
+          const responseData = await response.json();
+
           if (!response.ok) {
-            throw new Error('Submission failed');
+            // Use the specific error message from the API if available
+            const errorMessage = responseData.error || 'Submission failed. Please try again.';
+            throw new Error(errorMessage);
           }
 
-          status.textContent = 'Thank you for your interest. We\'ll be in touch.';
+          status.textContent = responseData.message || 'Thank you for your interest. We\'ll be in touch.';
           status.className = 'form-status success';
           status.style.display = 'block';
           e.target.reset();
         } catch (err) {
-          status.textContent = 'There was an error submitting the form. Please try again or email us at support@insulindosescalculator.com';
+          // Display the specific error message from the API
+          const errorMessage = err.message || 'There was an error submitting the form. Please try again or email us at support@insulindosescalculator.com';
+          status.textContent = errorMessage;
           status.className = 'form-status error';
           status.style.display = 'block';
         } finally {
