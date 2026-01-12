@@ -156,6 +156,14 @@
       padding: 1rem;
       border-bottom: 1px solid var(--border);
       color: var(--text);
+      vertical-align: top;
+    }
+    
+    .submissions-table td:nth-child(6) {
+      max-width: 400px;
+      word-wrap: break-word;
+      white-space: normal;
+      min-width: 200px;
     }
     
     .submissions-table tr:hover {
@@ -273,6 +281,12 @@
       .submissions-table th,
       .submissions-table td {
         padding: 0.75rem 0.5rem;
+        font-size: 0.85rem;
+      }
+      
+      .submissions-table td:nth-child(6) {
+        max-width: 200px;
+        max-height: 80px;
       }
     }
   </style>
@@ -346,13 +360,14 @@
               <th>Name</th>
               <th>Email</th>
               <th>Country</th>
+              <th>Message</th>
               <th>Marketing</th>
               <th>Submitted</th>
             </tr>
           </thead>
           <tbody id="submissionsBody">
             <tr>
-              <td colspan="7" class="loading">Loading submissions...</td>
+              <td colspan="8" class="loading">Loading submissions...</td>
             </tr>
           </tbody>
         </table>
@@ -481,7 +496,7 @@
       const tbody = document.getElementById('submissionsBody');
       
         if (!data.data || data.data.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2rem; color: var(--muted);">No submissions found</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 2rem; color: var(--muted);">No submissions found</td></tr>';
         return;
       }
 
@@ -497,17 +512,19 @@
 
         const marketingConsent = submission.marketing_consent === 1 || submission.marketing_consent === true;
         const hasMessage = submission.message && submission.message.trim() !== '';
+        const escapedMessage = hasMessage ? submission.message.replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/\n/g, '<br>') : '';
+        const messageDisplay = hasMessage 
+          ? `<div style="max-width: 400px; max-height: 100px; overflow-y: auto; word-wrap: break-word; white-space: pre-wrap; font-size: 0.9rem; line-height: 1.4;" title="Full message: ${escapedMessage}">${escapedMessage}</div>`
+          : '<span style="color: var(--muted);">-</span>';
 
         return `
           <tr>
             <td>${submission.id}</td>
             <td>${submission.title || '-'}</td>
-            <td>
-              ${submission.name}
-              ${hasMessage ? `<span style="color: var(--accent1); cursor: help;" title="${submission.message.replace(/"/g, '&quot;')}"> 💬</span>` : ''}
-            </td>
+            <td>${submission.name}</td>
             <td><a href="mailto:${submission.email}">${submission.email}</a></td>
             <td>${submission.country}</td>
+            <td style="max-width: 400px;">${messageDisplay}</td>
             <td>${marketingConsent ? '<span style="color: #28a745;" title="Consented to marketing emails">✓</span>' : '<span style="color: var(--muted);" title="Did not consent">✗</span>'}</td>
             <td>${formattedDate}</td>
           </tr>
