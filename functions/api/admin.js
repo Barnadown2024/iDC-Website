@@ -123,7 +123,7 @@ export async function onRequestGet(context) {
     return new Response(
       JSON.stringify({ 
         error: 'An error occurred while fetching submissions.',
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        details: env.ENVIRONMENT === 'development' ? error.message : undefined
       }),
       { 
         status: 500,

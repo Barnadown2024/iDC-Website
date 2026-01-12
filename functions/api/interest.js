@@ -132,10 +132,15 @@ Or query the database directly in Cloudflare D1.
   }
 
   // If no email service configured, log to console (for development)
-  console.log('Email notification (no service configured):', {
+  console.warn('Email notification (no service configured):', {
     to,
     subject,
-    submission
+    submission,
+    availableServices: {
+      EMAIL_WORKER_URL: !!env.EMAIL_WORKER_URL,
+      RESEND_API_KEY: !!env.RESEND_API_KEY,
+      SENDGRID_API_KEY: !!env.SENDGRID_API_KEY
+    }
   });
 
   return { success: true, note: 'Email service not configured' };
@@ -305,7 +310,14 @@ export async function onRequestPost(context) {
     // Send notification email using Cloudflare Email Routing
     if (env.NOTIFICATION_EMAIL) {
       try {
-        await sendNotificationEmail({
+        console.log('Attempting to send email notification to:', env.NOTIFICATION_EMAIL);
+        console.log('Email service check:', {
+          hasEmailWorker: !!env.EMAIL_WORKER_URL,
+          hasResend: !!env.RESEND_API_KEY,
+          hasSendGrid: !!env.SENDGRID_API_KEY
+        });
+        
+        const emailResult = await sendNotificationEmail({
           to: env.NOTIFICATION_EMAIL,
           subject: 'New Expression of Interest - Insulin Doses Calculator',
           submission: {
@@ -319,11 +331,24 @@ export async function onRequestPost(context) {
             submittedAt: new Date().toISOString()
           }
         }, env);
+        
+        console.log('Email notification sent successfully:', emailResult);
       } catch (emailError) {
         // Log email error but don't fail the submission
-        console.error('Failed to send notification email:', emailError);
+        console.error('Failed to send notification email:', emailError.message || emailError);
+        console.error('Email error details:', {
+          error: emailError.toString(),
+          stack: emailError.stack,
+          availableServices: {
+            EMAIL_WORKER_URL: !!env.EMAIL_WORKER_URL,
+            RESEND_API_KEY: !!env.RESEND_API_KEY,
+            SENDGRID_API_KEY: !!env.SENDGRID_API_KEY
+          }
+        });
         // Continue - submission is still successful
       }
+    } else {
+      console.log('NOTIFICATION_EMAIL not set - skipping email notification');
     }
     
     // Get origin from request for CORS
@@ -373,7 +398,7 @@ export async function onRequestPost(context) {
     return new Response(
       JSON.stringify({ 
         error: errorMessage,
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        details: env.ENVIRONMENT === 'development' ? error.message : undefined
       }),
       { 
         status: statusCode,
