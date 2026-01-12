@@ -1003,13 +1003,22 @@
       // Suppress errors
       console.error = function(...args) {
         const message = args[0]?.toString() || '';
+        const url = (args[1] && args[1].toString) ? args[1].toString() : '';
+        const fullMessage = (message + ' ' + url).trim();
         if (message.includes('Turnstile') || 
             message.includes('challenges.cloudflare.com') ||
             message.includes('110200') ||
             message.includes('cdn-cgi/challenge-platform') ||
             message.includes('ERR_BLOCKED_BY_CLIENT') ||
-            message.includes('cloudflareinsights.com')) {
-          // Suppress Cloudflare-related errors
+            message.includes('ERR_FAILED') ||
+            message.includes('cloudflareinsights.com') ||
+            message.includes('onetrust.com') ||
+            message.includes('zaraz') ||
+            message.includes('Failed to fetch') ||
+            fullMessage.includes('static.cloudflareinsights.com') ||
+            fullMessage.includes('geolocation.onetrust.com') ||
+            fullMessage.includes('dash.cloudflare.com')) {
+          // Suppress Cloudflare-related errors and dashboard scripts
           return;
         }
         originalError.apply(console, args);
