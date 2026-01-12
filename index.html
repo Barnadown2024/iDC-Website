@@ -1000,17 +1000,61 @@
                           hostname === 'www.insulindosescalculator.com' ||
                           hostname.endsWith('.pages.dev'); // Cloudflare Pages preview URLs
       
-      if (isProduction) {
+      // Skip Turnstile on localhost or unregistered domains
+      const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.') || hostname.startsWith('10.') || hostname.startsWith('172.');
+      
+      if (isProduction && !isLocalhost) {
         const turnstileContainer = document.getElementById('turnstile-container');
         if (turnstileContainer) {
           turnstileContainer.style.display = 'block';
           
-          // Load Turnstile script
+          // Load Turnstile script with error handling
           const script = document.createElement('script');
           script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
           script.async = true;
           script.defer = true;
+          
+          // Handle script load errors
+          script.onerror = function() {
+            console.warn('Turnstile script failed to load. Form will still work without verification.');
+            turnstileContainer.style.display = 'none';
+          };
+          
+          // Wait for script to load before initializing
+          script.onload = function() {
+            // Small delay to ensure Turnstile API is ready
+            setTimeout(function() {
+              try {
+                // Check if Turnstile is available
+                if (typeof window.turnstile !== 'undefined') {
+                  // Turnstile will auto-render when script loads
+                  // Suppress Turnstile errors in console
+                  const originalError = console.error;
+                  console.error = function(...args) {
+                    if (args[0] && typeof args[0] === 'string' && args[0].includes('Turnstile')) {
+                      // Suppress Turnstile domain errors
+                      return;
+                    }
+                    originalError.apply(console, args);
+                  };
+                } else {
+                  console.warn('Turnstile API not available');
+                  turnstileContainer.style.display = 'none';
+                }
+              } catch (e) {
+                // Silently handle Turnstile initialization errors
+                turnstileContainer.style.display = 'none';
+              }
+            }, 100);
+          };
+          
           document.body.appendChild(script);
+        }
+      } else {
+        // Hide Turnstile container on localhost/unregistered domains
+        const turnstileContainer = document.getElementById('turnstile-container');
+        if (turnstileContainer) {
+          turnstileContainer.style.display = 'none';
         }
       }
     })();
