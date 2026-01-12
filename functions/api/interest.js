@@ -107,6 +107,17 @@ export async function onRequestPost(context) {
     // Optional: Send notification email (requires additional service)
     // You can integrate with services like Resend, SendGrid, or Cloudflare Email Routing
     
+    // Get origin from request for CORS
+    const origin = request.headers.get('Origin');
+    const allowedOrigins = [
+      'https://insulindosescalculator.com',
+      'https://www.insulindosescalculator.com'
+    ];
+    const isCloudflarePreview = origin && origin.includes('.pages.dev');
+    const allowOrigin = (origin && (allowedOrigins.includes(origin) || isCloudflarePreview)) 
+      ? origin 
+      : '*'; // Fallback for development/localhost
+    
     return new Response(
       JSON.stringify({ 
         success: true, 
@@ -117,7 +128,7 @@ export async function onRequestPost(context) {
         status: 200,
         headers: { 
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*', // Adjust for production
+          'Access-Control-Allow-Origin': allowOrigin,
           'Access-Control-Allow-Methods': 'POST',
           'Access-Control-Allow-Headers': 'Content-Type'
         }
@@ -154,11 +165,27 @@ export async function onRequestPost(context) {
 }
 
 // Handle CORS preflight requests
-export async function onRequestOptions() {
+export async function onRequestOptions(context) {
+  const { request } = context;
+  const origin = request.headers.get('Origin');
+  
+  // Allow your production domain and Cloudflare Pages preview URLs
+  const allowedOrigins = [
+    'https://insulindosescalculator.com',
+    'https://www.insulindosescalculator.com'
+  ];
+  
+  // Also allow Cloudflare Pages preview URLs (for testing)
+  const isCloudflarePreview = origin && origin.includes('.pages.dev');
+  
+  const allowOrigin = allowedOrigins.includes(origin) || isCloudflarePreview 
+    ? origin 
+    : '*';
+  
   return new Response(null, {
     status: 204,
     headers: {
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': allowOrigin,
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
       'Access-Control-Max-Age': '86400',
