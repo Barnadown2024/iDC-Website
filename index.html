@@ -991,71 +991,120 @@
     }
   </script>
   
+  <!-- Suppress console errors early - before any other scripts -->
+  <script>
+    // Suppress harmless Cloudflare and browser extension console messages
+    // These errors are from Cloudflare's infrastructure and browser extensions, not our code
+    (function() {
+      const originalError = console.error;
+      const originalWarn = console.warn;
+      const originalLog = console.log;
+      
+      // Suppress errors
+      console.error = function(...args) {
+        const message = args[0]?.toString() || '';
+        if (message.includes('Turnstile') || 
+            message.includes('challenges.cloudflare.com') ||
+            message.includes('110200') ||
+            message.includes('cdn-cgi/challenge-platform') ||
+            message.includes('ERR_BLOCKED_BY_CLIENT') ||
+            message.includes('cloudflareinsights.com')) {
+          // Suppress Cloudflare-related errors
+          return;
+        }
+        originalError.apply(console, args);
+      };
+      
+      // Suppress warnings
+      console.warn = function(...args) {
+        const message = args[0]?.toString() || '';
+        if (message.includes('Turnstile') || 
+            message.includes('challenges.cloudflare.com') ||
+            message.includes('Permissions-Policy') ||
+            message.includes('browsing-topics') ||
+            message.includes('interest-cohort') ||
+            message.includes('script-src') ||
+            message.includes('default-src') ||
+            message.includes('preload') ||
+            message.includes('MetaMask') ||
+            message.includes('web3')) {
+          // Suppress Cloudflare, CSP, and browser extension warnings
+          return;
+        }
+        originalWarn.apply(console, args);
+      };
+      
+      // Suppress some logs
+      console.log = function(...args) {
+        const message = args[0]?.toString() || '';
+        if (message.includes('Private Access Token') ||
+            message.includes('challenge-platform')) {
+          // Suppress Cloudflare challenge logs
+          return;
+        }
+        originalLog.apply(console, args);
+      };
+    })();
+  </script>
+  
   <!-- Turnstile - only load on production domain -->
   <script>
+    
     // Only show Turnstile on production domain
     (function() {
       const hostname = window.location.hostname;
-      const isProduction = hostname === 'insulindosescalculator.com' || 
-                          hostname === 'www.insulindosescalculator.com' ||
-                          hostname.endsWith('.pages.dev'); // Cloudflare Pages preview URLs
       
-      // Skip Turnstile on localhost or unregistered domains
-      const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.') || hostname.startsWith('10.') || hostname.startsWith('172.');
+      // Only allow Turnstile on the exact production domain
+      const allowedDomains = [
+        'insulindosescalculator.com',
+        'www.insulindosescalculator.com'
+      ];
       
-      if (isProduction && !isLocalhost) {
-        const turnstileContainer = document.getElementById('turnstile-container');
-        if (turnstileContainer) {
-          turnstileContainer.style.display = 'block';
-          
-          // Load Turnstile script with error handling
-          const script = document.createElement('script');
-          script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
-          script.async = true;
-          script.defer = true;
-          
-          // Handle script load errors
-          script.onerror = function() {
-            console.warn('Turnstile script failed to load. Form will still work without verification.');
+      // Check if domain is allowed
+      const isAllowedDomain = allowedDomains.includes(hostname);
+      
+      // Hide Turnstile container by default
+      const turnstileContainer = document.getElementById('turnstile-container');
+      if (turnstileContainer) {
+        turnstileContainer.style.display = 'none';
+      }
+      
+      // Only load Turnstile on allowed domains
+      if (isAllowedDomain && turnstileContainer) {
+        turnstileContainer.style.display = 'block';
+        
+        // Load Turnstile script with error handling
+        const script = document.createElement('script');
+        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+        script.async = true;
+        script.defer = true;
+        
+        // Handle script load errors
+        script.onerror = function() {
+          if (turnstileContainer) {
             turnstileContainer.style.display = 'none';
-          };
-          
-          // Wait for script to load before initializing
-          script.onload = function() {
-            // Small delay to ensure Turnstile API is ready
-            setTimeout(function() {
-              try {
-                // Check if Turnstile is available
-                if (typeof window.turnstile !== 'undefined') {
-                  // Turnstile will auto-render when script loads
-                  // Suppress Turnstile errors in console
-                  const originalError = console.error;
-                  console.error = function(...args) {
-                    if (args[0] && typeof args[0] === 'string' && args[0].includes('Turnstile')) {
-                      // Suppress Turnstile domain errors
-                      return;
-                    }
-                    originalError.apply(console, args);
-                  };
-                } else {
-                  console.warn('Turnstile API not available');
+          }
+        };
+        
+        // Wait for script to load
+        script.onload = function() {
+          setTimeout(function() {
+            try {
+              if (typeof window.turnstile === 'undefined') {
+                if (turnstileContainer) {
                   turnstileContainer.style.display = 'none';
                 }
-              } catch (e) {
-                // Silently handle Turnstile initialization errors
+              }
+            } catch (e) {
+              // Silently handle errors
+              if (turnstileContainer) {
                 turnstileContainer.style.display = 'none';
               }
-            }, 100);
-          };
-          
-          document.body.appendChild(script);
-        }
-      } else {
-        // Hide Turnstile container on localhost/unregistered domains
-        const turnstileContainer = document.getElementById('turnstile-container');
-        if (turnstileContainer) {
-          turnstileContainer.style.display = 'none';
-        }
+            }
+          }, 100);
+        };
+        
+        document.body.appendChild(script);
       }
     })();
   </script>
