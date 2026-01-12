@@ -575,12 +575,15 @@
               <option value="Zimbabwe">Zimbabwe</option>
             </select>
           </div>
-<div class="form-group">
-  <div class="cf-turnstile" data-sitekey="0x4AAAAAACMBGQMdiIsh0xiA"></div>
-</div>
+
+          <div class="form-group" id="turnstile-container" style="display: none;">
+            <label>Verification</label>
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAACMBGQMdiIsh0xiA"></div>
+          </div>
+
           <button type="submit" class="button">Submit Expression of Interest</button>
 
-          <p id="formStatus" class="form-status" aria-live="polite"></p>
+          <p id="formStatus" class="form-status" aria-live="polite" style="display: none;"></p>
         </form>
 
         <div style="max-width: 700px; margin: 48px auto 0;">
@@ -1003,6 +1006,7 @@
         
         status.textContent = 'Submitting…';
         status.className = 'form-status';
+        status.style.display = 'block';
         submitButton.disabled = true;
         submitButton.textContent = 'Submitting…';
 
@@ -1021,10 +1025,12 @@
 
           status.textContent = 'Thank you for your interest. We\'ll be in touch.';
           status.className = 'form-status success';
+          status.style.display = 'block';
           e.target.reset();
         } catch (err) {
           status.textContent = 'There was an error submitting the form. Please try again or email us at support@insulindosescalculator.com';
           status.className = 'form-status error';
+          status.style.display = 'block';
         } finally {
           submitButton.disabled = false;
           submitButton.textContent = originalButtonText;
@@ -1032,6 +1038,30 @@
       });
     }
   </script>
- <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> 
+  
+  <!-- Turnstile - only load on production domain -->
+  <script>
+    // Only show Turnstile on production domain
+    (function() {
+      const hostname = window.location.hostname;
+      const isProduction = hostname === 'insulindosescalculator.com' || 
+                          hostname === 'www.insulindosescalculator.com' ||
+                          hostname.endsWith('.pages.dev'); // Cloudflare Pages preview URLs
+      
+      if (isProduction) {
+        const turnstileContainer = document.getElementById('turnstile-container');
+        if (turnstileContainer) {
+          turnstileContainer.style.display = 'block';
+          
+          // Load Turnstile script
+          const script = document.createElement('script');
+          script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+          script.async = true;
+          script.defer = true;
+          document.body.appendChild(script);
+        }
+      }
+    })();
+  </script>
 </body>
 </html>

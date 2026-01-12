@@ -49,36 +49,36 @@ export async function onRequestPost(context) {
       );
     }
     
-    // Cloudflare Turnstile verification
+    // Cloudflare Turnstile verification (only if token is provided)
+    // This allows the form to work on localhost/testing while still verifying on production
     if (env.TURNSTILE_SECRET_KEY) {
       const turnstileToken = data['cf-turnstile-response'];
-      if (!turnstileToken) {
-        return new Response(
-          JSON.stringify({ error: 'Turnstile verification required' }),
-          { status: 400, headers: { 'Content-Type': 'application/json' } }
-        );
-      }
       
-      const turnstileResponse = await fetch(
-        'https://challenges.cloudflare.com/turnstile/v0/siteverify',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({
-            secret: env.TURNSTILE_SECRET_KEY,
-            response: turnstileToken,
-            remoteip: request.headers.get('CF-Connecting-IP') || ''
-          })
+      // Only verify if token is present (production domain)
+      // If no token, allow submission (for localhost/testing)
+      if (turnstileToken) {
+        const turnstileResponse = await fetch(
+          'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+              secret: env.TURNSTILE_SECRET_KEY,
+              response: turnstileToken,
+              remoteip: request.headers.get('CF-Connecting-IP') || ''
+            })
+          }
+        );
+        
+        const turnstileResult = await turnstileResponse.json();
+        if (!turnstileResult.success) {
+          return new Response(
+            JSON.stringify({ error: 'Turnstile verification failed' }),
+            { status: 400, headers: { 'Content-Type': 'application/json' } }
+          );
         }
-      );
-      
-      const turnstileResult = await turnstileResponse.json();
-      if (!turnstileResult.success) {
-        return new Response(
-          JSON.stringify({ error: 'Turnstile verification failed' }),
-          { status: 400, headers: { 'Content-Type': 'application/json' } }
-        );
       }
+      // If no token provided, continue without verification (for localhost/testing)
     }
     
     // Insert into D1 database

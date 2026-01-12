@@ -1094,6 +1094,23 @@ code{
   border: 1px solid rgba(220, 53, 69, 0.2);
 }
 
+/* Turnstile container styling */
+#turnstile-container {
+  margin-top: 0.5rem;
+}
+
+#turnstile-container label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  font-size: 0.95rem;
+  display: block;
+}
+
+#turnstile-container .cf-turnstile {
+  margin-top: 0.5rem;
+}
+
 @media (max-width: 768px) {
   .contact-form {
     max-width: 100%;
