@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS expressions_of_interest (
   name TEXT NOT NULL,
   email TEXT NOT NULL,
   country TEXT NOT NULL,
+  message TEXT,
+  marketing_consent INTEGER DEFAULT 0,
   submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 

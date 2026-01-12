@@ -346,12 +346,13 @@
               <th>Name</th>
               <th>Email</th>
               <th>Country</th>
+              <th>Marketing</th>
               <th>Submitted</th>
             </tr>
           </thead>
           <tbody id="submissionsBody">
             <tr>
-              <td colspan="6" class="loading">Loading submissions...</td>
+              <td colspan="7" class="loading">Loading submissions...</td>
             </tr>
           </tbody>
         </table>
@@ -479,8 +480,8 @@
     function displaySubmissions(data) {
       const tbody = document.getElementById('submissionsBody');
       
-      if (!data.data || data.data.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: var(--muted);">No submissions found</td></tr>';
+        if (!data.data || data.data.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2rem; color: var(--muted);">No submissions found</td></tr>';
         return;
       }
 
@@ -494,13 +495,20 @@
           minute: '2-digit'
         });
 
+        const marketingConsent = submission.marketing_consent === 1 || submission.marketing_consent === true;
+        const hasMessage = submission.message && submission.message.trim() !== '';
+
         return `
           <tr>
             <td>${submission.id}</td>
             <td>${submission.title || '-'}</td>
-            <td>${submission.name}</td>
+            <td>
+              ${submission.name}
+              ${hasMessage ? `<span style="color: var(--accent1); cursor: help;" title="${submission.message.replace(/"/g, '&quot;')}"> 💬</span>` : ''}
+            </td>
             <td><a href="mailto:${submission.email}">${submission.email}</a></td>
             <td>${submission.country}</td>
+            <td>${marketingConsent ? '<span style="color: #28a745;" title="Consented to marketing emails">✓</span>' : '<span style="color: var(--muted);" title="Did not consent">✗</span>'}</td>
             <td>${formattedDate}</td>
           </tr>
         `;
@@ -583,13 +591,15 @@
         }
 
         // Create CSV
-        const headers = ['ID', 'Title', 'Name', 'Email', 'Country', 'Submitted At'];
+        const headers = ['ID', 'Title', 'Name', 'Email', 'Country', 'Message', 'Marketing Consent', 'Submitted At'];
         const rows = data.data.map(s => [
           s.id,
           s.title || '',
           s.name,
           s.email,
           s.country,
+          s.message || '',
+          (s.marketing_consent === 1 || s.marketing_consent === true) ? 'Yes' : 'No',
           s.submitted_at
         ]);
 

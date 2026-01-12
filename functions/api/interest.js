@@ -33,9 +33,10 @@ Title: ${submission.title}
 Name: ${submission.name}
 Email: ${submission.email}
 Country: ${submission.country}
+Marketing Consent: ${submission.marketingConsent ? 'Yes' : 'No'}
 Submitted: ${new Date(submission.submittedAt).toLocaleString()}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
+${submission.message && submission.message !== 'No message provided' ? `Message:\n${submission.message}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` : ''}
 You can view all submissions in the admin dashboard:
 https://insulindosescalculator.com/admin.html
 
@@ -188,6 +189,16 @@ function formatEmailHTML(submission) {
         <div class="label">Country</div>
         <div class="value">${submission.country}</div>
       </div>
+      ${submission.message && submission.message !== 'No message provided' ? `
+      <div class="field">
+        <div class="label">Message</div>
+        <div class="value" style="white-space: pre-wrap; background: #f8f9fa; padding: 12px; border-radius: 6px; margin-top: 5px;">${submission.message}</div>
+      </div>
+      ` : ''}
+      <div class="field">
+        <div class="label">Marketing Consent</div>
+        <div class="value">${submission.marketingConsent ? '✓ Yes - Can receive marketing emails' : '✗ No'}</div>
+      </div>
       <div class="field">
         <div class="label">Submitted</div>
         <div class="value">${new Date(submission.submittedAt).toLocaleString()}</div>
@@ -209,7 +220,7 @@ export async function onRequestPost(context) {
     const data = await request.json();
     
     // Validate required fields
-    const { title, name, email, country } = data;
+    const { title, name, email, country, message, marketingConsent } = data;
     
     if (!name || !email || !country) {
       return new Response(
@@ -220,6 +231,9 @@ export async function onRequestPost(context) {
         }
       );
     }
+    
+    // Convert marketing consent checkbox to boolean (0 or 1 for database)
+    const marketingConsentValue = marketingConsent === 'true' || marketingConsent === true ? 1 : 0;
     
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -284,9 +298,9 @@ export async function onRequestPost(context) {
     
     // Insert new submission (allowing duplicates - user might want to update info)
     const result = await env.DB.prepare(
-      `INSERT INTO expressions_of_interest (title, name, email, country, submitted_at)
-       VALUES (?, ?, ?, ?, datetime('now'))`
-    ).bind(title || null, name, email, country).run();
+      `INSERT INTO expressions_of_interest (title, name, email, country, message, marketing_consent, submitted_at)
+       VALUES (?, ?, ?, ?, ?, ?, datetime('now'))`
+    ).bind(title || null, name, email, country, message || null, marketingConsentValue).run();
     
     // Send notification email using Cloudflare Email Routing
     if (env.NOTIFICATION_EMAIL) {
@@ -300,6 +314,8 @@ export async function onRequestPost(context) {
             name,
             email,
             country,
+            message: message || 'No message provided',
+            marketingConsent: marketingConsentValue === 1,
             submittedAt: new Date().toISOString()
           }
         }, env);

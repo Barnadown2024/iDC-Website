@@ -999,7 +999,8 @@ code{
 }
 
 .contact-form input,
-.contact-form select {
+.contact-form select,
+.contact-form textarea {
   padding: 0.75rem 1rem;
   font-size: 1rem;
   border: 1px solid var(--border);
@@ -1012,6 +1013,16 @@ code{
   box-sizing: border-box;
 }
 
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.contact-form textarea::placeholder {
+  color: var(--muted2);
+}
+
 .contact-form select {
   cursor: pointer;
   appearance: none;
@@ -1022,7 +1033,8 @@ code{
 }
 
 .contact-form input:focus,
-.contact-form select:focus {
+.contact-form select:focus,
+.contact-form textarea:focus {
   outline: none;
   border-color: var(--accent1);
   box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
@@ -1040,13 +1052,41 @@ code{
 }
 
 [data-theme="dark"] .contact-form input,
-[data-theme="dark"] .contact-form select {
+[data-theme="dark"] .contact-form select,
+[data-theme="dark"] .contact-form textarea {
   background: var(--panel);
 }
 
 [data-theme="dark"] .contact-form input:focus,
-[data-theme="dark"] .contact-form select:focus {
+[data-theme="dark"] .contact-form select:focus,
+[data-theme="dark"] .contact-form textarea:focus {
   background: var(--bg);
+}
+
+/* Checkbox styling */
+.contact-form .checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.contact-form .checkbox-label input[type="checkbox"] {
+  width: auto;
+  margin-top: 0.2rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent1);
+}
+
+.contact-form .checkbox-label span {
+  flex: 1;
+  color: var(--text);
 }
 
 [data-theme="dark"] .contact-form select {
@@ -1118,13 +1158,18 @@ code{
   }
   
   .contact-form input,
-  .contact-form select {
+  .contact-form select,
+  .contact-form textarea {
     padding: 0.7rem 0.9rem;
     font-size: 0.95rem;
   }
   
   .contact-form select {
     padding-right: 2.25rem;
+  }
+  
+  .contact-form textarea {
+    min-height: 100px;
   }
   
   .contact-form .button {
