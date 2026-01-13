@@ -164,9 +164,9 @@ export async function onRequestDelete(context) {
       );
     }
     
-    // Get ID from URL path or query params
+    // Get ID from query params
     const url = new URL(request.url);
-    const id = url.pathname.split('/').pop() || url.searchParams.get('id');
+    const id = url.searchParams.get('id');
     
     if (!id) {
       return new Response(
@@ -180,7 +180,7 @@ export async function onRequestDelete(context) {
     
     // Validate ID is a number
     const submissionId = parseInt(id);
-    if (isNaN(submissionId)) {
+    if (isNaN(submissionId) || submissionId <= 0) {
       return new Response(
         JSON.stringify({ error: 'Invalid submission ID' }),
         { 
