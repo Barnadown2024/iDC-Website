@@ -133,13 +133,125 @@ export async function onRequestGet(context) {
   }
 }
 
+/**
+ * Delete a submission by ID
+ */
+export async function onRequestDelete(context) {
+  const { request, env } = context;
+  
+  try {
+    // Check authentication
+    const apiKey = request.headers.get('X-API-Key');
+    
+    if (!env.ADMIN_API_KEY || apiKey !== env.ADMIN_API_KEY) {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized. Invalid or missing API key.' }),
+        { 
+          status: 401,
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+    }
+    
+    // Check database
+    if (!env.DB) {
+      return new Response(
+        JSON.stringify({ error: 'Database not configured' }),
+        { 
+          status: 500,
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+    }
+    
+    // Get ID from URL path or query params
+    const url = new URL(request.url);
+    const id = url.pathname.split('/').pop() || url.searchParams.get('id');
+    
+    if (!id) {
+      return new Response(
+        JSON.stringify({ error: 'Submission ID is required' }),
+        { 
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+    }
+    
+    // Validate ID is a number
+    const submissionId = parseInt(id);
+    if (isNaN(submissionId)) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid submission ID' }),
+        { 
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+    }
+    
+    // Check if submission exists
+    const existing = await env.DB.prepare(
+      'SELECT id, name, email FROM expressions_of_interest WHERE id = ?'
+    ).bind(submissionId).first();
+    
+    if (!existing) {
+      return new Response(
+        JSON.stringify({ error: 'Submission not found' }),
+        { 
+          status: 404,
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+    }
+    
+    // Delete the submission
+    const result = await env.DB.prepare(
+      'DELETE FROM expressions_of_interest WHERE id = ?'
+    ).bind(submissionId).run();
+    
+    if (result.success) {
+      return new Response(
+        JSON.stringify({ 
+          success: true,
+          message: 'Submission deleted successfully',
+          deletedId: submissionId
+        }),
+        { 
+          status: 200,
+          headers: { 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        }
+      );
+    } else {
+      throw new Error('Delete operation failed');
+    }
+    
+  } catch (error) {
+    console.error('Error deleting submission:', error);
+    
+    return new Response(
+      JSON.stringify({ 
+        error: 'An error occurred while deleting the submission.',
+        details: env.ENVIRONMENT === 'development' ? error.message : undefined
+      }),
+      { 
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
+  }
+}
+
 // Handle CORS preflight
 export async function onRequestOptions() {
   return new Response(null, {
     status: 204,
     headers: {
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+      'Access-Control-Allow-Methods': 'GET, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'X-API-Key, Content-Type',
       'Access-Control-Max-Age': '86400',
     },

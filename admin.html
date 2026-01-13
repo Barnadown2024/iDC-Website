@@ -168,6 +168,34 @@
       min-width: 200px;
     }
     
+    .delete-button {
+      padding: 0.4rem 0.8rem;
+      background: linear-gradient(135deg, rgba(220,53,69,.95), rgba(200,35,51,.95));
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    
+    .delete-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(220,53,69,.3);
+      background: linear-gradient(135deg, rgba(200,35,51,.95), rgba(180,25,41,.95));
+    }
+    
+    .delete-button:active {
+      transform: translateY(0);
+    }
+    
+    .delete-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
     .submissions-table tr:hover {
       background: rgba(74, 144, 226, 0.05);
     }
@@ -290,6 +318,11 @@
         max-width: 200px;
         max-height: 80px;
       }
+      
+      .delete-button {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+      }
     }
   </style>
 </head>
@@ -365,11 +398,12 @@
               <th>Message</th>
               <th>Marketing</th>
               <th>Submitted</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody id="submissionsBody">
             <tr>
-              <td colspan="8" class="loading">Loading submissions...</td>
+              <td colspan="9" class="loading">Loading submissions...</td>
             </tr>
           </tbody>
         </table>
@@ -439,7 +473,7 @@
       const tbody = document.getElementById('submissionsBody');
       
       if (showLoading) {
-        tbody.innerHTML = '<tr><td colspan="6" class="loading">Loading...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="9" class="loading">Loading...</td></tr>';
       }
 
       const search = document.getElementById('searchInput')?.value || '';
@@ -489,7 +523,7 @@
 
       } catch (error) {
         statusMessage.innerHTML = `<div class="status-message error">Error: ${error.message}</div>`;
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #dc3545;">Error loading submissions</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; color: #dc3545;">Error loading submissions</td></tr>';
         return false;
       }
     }
@@ -498,7 +532,7 @@
       const tbody = document.getElementById('submissionsBody');
       
         if (!data.data || data.data.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 2rem; color: var(--muted);">No submissions found</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 2rem; color: var(--muted);">No submissions found</td></tr>';
         return;
       }
 
@@ -529,6 +563,7 @@
             <td style="max-width: 400px;">${messageDisplay}</td>
             <td>${marketingConsent ? '<span style="color: #28a745;" title="Consented to marketing emails">✓</span>' : '<span style="color: var(--muted);" title="Did not consent">✗</span>'}</td>
             <td>${formattedDate}</td>
+            <td><button class="delete-button" onclick="deleteSubmission(${submission.id}, '${submission.name.replace(/'/g, "\\'")}')" title="Delete this submission">Delete</button></td>
           </tr>
         `;
       }).join('');
@@ -670,6 +705,52 @@
         authenticate();
       }
     });
+
+    async function deleteSubmission(id, name) {
+      const confirmMessage = `Are you sure you want to delete the submission from "${name}"?\n\nThis action cannot be undone.`;
+      
+      if (!confirm(confirmMessage)) {
+        return;
+      }
+
+      const statusMessage = document.getElementById('statusMessage');
+      statusMessage.innerHTML = '<div class="status-message" style="background: rgba(74, 144, 226, 0.1); color: var(--accent1); border: 1px solid rgba(74, 144, 226, 0.2);">Deleting submission...</div>';
+
+      try {
+        const response = await fetch(`/api/admin?id=${id}`, {
+          method: 'DELETE',
+          headers: {
+            'X-API-Key': apiKey
+          }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          if (response.status === 401) {
+            // Unauthorized - clear API key
+            localStorage.removeItem('admin_api_key');
+            apiKey = null;
+            document.getElementById('authSection').style.display = 'block';
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('logoutBtn').style.display = 'none';
+            return;
+          }
+          throw new Error(data.error || 'Failed to delete submission');
+        }
+
+        // Show success message
+        statusMessage.innerHTML = '<div class="status-message success">Submission deleted successfully</div>';
+
+        // Reload submissions after a short delay
+        setTimeout(() => {
+          loadSubmissions();
+        }, 1000);
+
+      } catch (error) {
+        statusMessage.innerHTML = `<div class="status-message error">Error: ${error.message}</div>`;
+      }
+    }
   </script>
 </body>
 </html>
