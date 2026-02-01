@@ -532,6 +532,27 @@ h1{
   max-width: 1120px;
   margin: 0 auto;
 }
+
+/* About section: blood glucose target levels image with text wrap */
+.about-figure{
+  float: right;
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  margin: 0 0 24px 24px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 640px){
+  .about-figure{
+    float: none;
+    display: block;
+    max-width: 100%;
+    margin: 0 auto 24px;
+  }
+}
+
 h1{
   margin:0 0 24px;
   font-size: clamp(2rem, 3vw, 2.5rem);
