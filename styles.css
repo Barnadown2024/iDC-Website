@@ -536,12 +536,13 @@ h1{
 /* About section: blood glucose target levels image with text wrap */
 .about-figure{
   float: right;
-  max-width: 280px;
+  max-width: 322px; /* 15% larger than 280px */
   width: 100%;
   height: auto;
   margin: 0 0 24px 24px;
   border-radius: 8px;
   box-shadow: var(--shadow);
+  cursor: pointer;
 }
 
 @media (max-width: 640px){
