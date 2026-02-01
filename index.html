@@ -3,25 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Insulin Doses Calculator — a fast, simple insulin bolus calculator and meal planning companion. Website coming soon." />
+  <meta name="description" content="Insulin Doses Calculator — the insulin dose calculator and bolus calculator for Type 1 & Type 2 diabetes. Meal planning, dose guidance, and blood glucose tracking. Get the app." />
   <meta name="theme-color" content="#FFFFFF" />
-  <title>Insulin Doses Calculator — Coming Soon</title>
+  <title>Insulin Doses Calculator | Insulin Dose Calculator & Bolus Calculator for Diabetes</title>
+  <link rel="canonical" href="https://insulindosescalculator.com/" />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://insulindosescalculator.com/" />
-  <meta property="og:title" content="Insulin Doses Calculator — Coming Soon" />
-  <meta property="og:description" content="A fast, simple insulin bolus calculator and meal planning companion. Built for real life." />
+  <meta property="og:title" content="Insulin Doses Calculator | Insulin Dose Calculator & Bolus Calculator" />
+  <meta property="og:description" content="The insulin dose calculator and bolus calculator for diabetes. Meal planning, dose guidance, and blood glucose tracking. Built for real life." />
   <meta property="og:image" content="https://insulindosescalculator.com/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Insulin Doses Calculator - A simple, personal insulin calculator" />
+  <meta property="og:image:alt" content="Insulin Doses Calculator - Insulin dose calculator and bolus calculator for diabetes" />
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://insulindosescalculator.com/" />
-  <meta name="twitter:title" content="Insulin Doses Calculator — Coming Soon" />
-  <meta name="twitter:description" content="A fast, simple insulin bolus calculator and meal planning companion. Built for real life." />
+  <meta name="twitter:title" content="Insulin Doses Calculator | Insulin Dose Calculator & Bolus Calculator" />
+  <meta name="twitter:description" content="The insulin dose calculator and bolus calculator for diabetes. Meal planning, dose guidance, and blood glucose tracking." />
   <meta name="twitter:image" content="https://insulindosescalculator.com/assets/og-image.png" />
   <link rel="icon" href="assets/idc-logo.webp" type="image/webp" />
   <link rel="icon" href="assets/idc-logo.png" type="image/png" />
@@ -29,6 +30,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <!-- Structured data for search engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://insulindosescalculator.com/#organization",
+        "name": "Insulin Doses Calculator",
+        "url": "https://insulindosescalculator.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://insulindosescalculator.com/assets/idc-logo.webp"
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://insulindosescalculator.com/#webapp",
+        "name": "Insulin Doses Calculator",
+        "alternateName": "Insulin Dose Calculator",
+        "url": "https://insulindosescalculator.com/",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "iOS, Android",
+        "description": "Insulin Doses Calculator is an insulin dose calculator and bolus calculator for Type 1 and Type 2 diabetes. Meal planning, dose guidance, blood glucose tracking, and clinician reports.",
+        "publisher": { "@id": "https://insulindosescalculator.com/#organization" }
+      }
+    ]
+  }
+  </script>
 </head>
 <body id="top">
   <header class="header">
@@ -63,6 +93,7 @@
       <a href="#features-separator">Features</a>
       <a href="#about-separator">About</a>
       <a href="#screenshots-separator">Screenshots</a>
+      <a href="#faq-separator">FAQ</a>
       <a href="#download-separator">Download</a>
       <a href="#contact-separator" class="button small">Contact</a>
     </nav>
@@ -73,10 +104,9 @@
       <div class="hero-inner">
         <div class="hero-copy">
           <p class="pill">Website in progress</p>
-          <h1>A simple, personal insulin calculator — built for real life.</h1>
+          <h1>Insulin Doses Calculator — Your Insulin Dose Calculator & Bolus Calculator for Real Life</h1>
           <p class="lead">
-            We’re building the full website for <strong>Insulin Doses Calculator</strong>. For now, this page is here to
-            confirm the domain and share what’s coming.
+            <strong>Insulin Doses Calculator</strong> is a simple, personal insulin dose calculator and bolus calculator for Type 1 and Type 2 diabetes. Meal planning, dose guidance, and blood glucose tracking — built for real life.
           </p>
           <div class="cta">
             <a class="button" href="#contact-separator">Get in touch</a>
@@ -142,7 +172,7 @@
         <h2>About Insulin Doses Calculator</h2>
         <img src="assets/target_levels.png" alt="Blood glucose target levels (mmol/L) for adults with diabetes: targets, diagnosis levels, and low/high levels" class="about-figure" onclick="openLightboxWithImage(null, 'assets/target_levels.png')" style="cursor: pointer;" title="Click to view larger" />
         <p>
-          Insulin Doses Calculator is a simple, intuitive app designed to support people living with diabetes in making informed decisions around insulin dosing. Built for both Type 1 and insulin-dependent Type 2 diabetes, the app helps users better understand how food intake, blood glucose levels, and personal insulin settings work together.
+          Insulin Doses Calculator is a simple, intuitive insulin dose calculator designed to support people living with diabetes in making informed decisions around insulin dosing. Built for both Type 1 and insulin-dependent Type 2 diabetes, the app helps users better understand how food intake, blood glucose levels, and personal insulin settings work together.
         </p>
         <p>
           The app allows users to log meals, view nutritional information, and receive insulin dose recommendations based on their individual insulin-to-carbohydrate ratios and correction factors. By combining structured data with intelligent calculations, Insulin Doses Calculator aims to reduce guesswork and bring greater confidence to everyday diabetes management.
@@ -177,7 +207,7 @@
           <div class="screenshot-item" data-screenshot="1" onclick="openLightboxWithImage('assets/screenshot-1.webp', 'assets/screenshot-1.png')">
             <picture>
               <source srcset="assets/screenshot-1.webp" type="image/webp" />
-              <img src="assets/screenshot-1.png" alt="GlucoPlan screenshot 1" onerror="this.parentElement.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+              <img src="assets/screenshot-1.png" alt="GlucoPlan screenshot 1" onerror="this.parentElement.parentElement.style.display='none'; window.checkIfAnyScreenshotsVisible && window.checkIfAnyScreenshotsVisible();" />
             </picture>
             <div class="screenshot-overlay">
               <span class="screenshot-icon">🔍</span>
@@ -186,7 +216,7 @@
           <div class="screenshot-item" data-screenshot="2" onclick="openLightboxWithImage('assets/screenshot-2.webp', 'assets/screenshot-2.png')">
             <picture>
               <source srcset="assets/screenshot-2.webp" type="image/webp" />
-              <img src="assets/screenshot-2.png" alt="GlucoPlan screenshot 2" onerror="this.parentElement.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+              <img src="assets/screenshot-2.png" alt="GlucoPlan screenshot 2" onerror="this.parentElement.parentElement.style.display='none'; window.checkIfAnyScreenshotsVisible && window.checkIfAnyScreenshotsVisible();" />
             </picture>
             <div class="screenshot-overlay">
               <span class="screenshot-icon">🔍</span>
@@ -195,32 +225,8 @@
           <div class="screenshot-item" data-screenshot="3" onclick="openLightboxWithImage('assets/screenshot-3.webp', 'assets/screenshot-3.png')">
             <picture>
               <source srcset="assets/screenshot-3.webp" type="image/webp" />
-              <img src="assets/screenshot-3.png" alt="GlucoPlan screenshot 3" onerror="this.parentElement.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+              <img src="assets/screenshot-3.png" alt="GlucoPlan screenshot 3" onerror="this.parentElement.parentElement.style.display='none'; window.checkIfAnyScreenshotsVisible && window.checkIfAnyScreenshotsVisible();" />
             </picture>
-            <div class="screenshot-overlay">
-              <span class="screenshot-icon">🔍</span>
-            </div>
-          </div>
-          <div class="screenshot-item" data-screenshot="4" onclick="openLightboxWithImage('assets/screenshot-4.png')">
-            <img src="assets/screenshot-4.png" alt="GlucoPlan screenshot 4" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
-            <div class="screenshot-overlay">
-              <span class="screenshot-icon">🔍</span>
-            </div>
-          </div>
-          <div class="screenshot-item" data-screenshot="5" onclick="openLightboxWithImage('assets/screenshot-5.png')">
-            <img src="assets/screenshot-5.png" alt="GlucoPlan screenshot 5" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
-            <div class="screenshot-overlay">
-              <span class="screenshot-icon">🔍</span>
-            </div>
-          </div>
-          <div class="screenshot-item" data-screenshot="6" onclick="openLightboxWithImage('assets/screenshot-6.png')">
-            <img src="assets/screenshot-6.png" alt="GlucoPlan screenshot 6" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
-            <div class="screenshot-overlay">
-              <span class="screenshot-icon">🔍</span>
-            </div>
-          </div>
-          <div class="screenshot-item" data-screenshot="7" onclick="openLightboxWithImage('assets/screenshot-7.png')">
-            <img src="assets/screenshot-7.png" alt="GlucoPlan screenshot 7" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
             <div class="screenshot-overlay">
               <span class="screenshot-icon">🔍</span>
             </div>
@@ -228,14 +234,8 @@
           <div class="screenshot-item" data-screenshot="8" onclick="openLightboxWithImage('assets/screenshot-8.webp', 'assets/screenshot-8.png')">
             <picture>
               <source srcset="assets/screenshot-8.webp" type="image/webp" />
-              <img src="assets/screenshot-8.png" alt="GlucoPlan screenshot 8" onerror="this.parentElement.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
+              <img src="assets/screenshot-8.png" alt="GlucoPlan screenshot 8" onerror="this.parentElement.parentElement.style.display='none'; window.checkIfAnyScreenshotsVisible && window.checkIfAnyScreenshotsVisible();" />
             </picture>
-            <div class="screenshot-overlay">
-              <span class="screenshot-icon">🔍</span>
-            </div>
-          </div>
-          <div class="screenshot-item" data-screenshot="9" onclick="openLightboxWithImage('assets/screenshot-9.png')">
-            <img src="assets/screenshot-9.png" alt="GlucoPlan screenshot 9" onerror="this.parentElement.style.display='none'; checkIfAnyScreenshotsVisible();" />
             <div class="screenshot-overlay">
               <span class="screenshot-icon">🔍</span>
             </div>
@@ -244,6 +244,147 @@
         <p style="color: var(--muted2); font-size: 0.9rem; margin-top: 16px; text-align: center;">
           Click on any screenshot to view it in full size with zoom controls
         </p>
+      </div>
+    </section>
+
+    <div id="faq-separator" class="section-separator" style="scroll-margin-top: 80px;"></div>
+
+    <section id="faq" class="section">
+      <div class="container">
+        <h2>Frequently Asked Questions (FAQ)</h2>
+        <p class="lead" style="max-width: 700px; margin: 0 auto 32px; color: var(--muted);">
+          Insulin Doses Calculator (iDC) is a support tool designed to help people with diabetes estimate insulin doses. It does not replace professional medical advice.
+        </p>
+        <div class="faq-list">
+          <details class="details faq-item">
+            <summary>What is Insulin Doses Calculator (iDC)?</summary>
+            <div class="details-body">
+              <p>iDC is a support tool designed to help people with diabetes estimate insulin doses using information such as carbohydrate intake, blood glucose levels, and personal insulin settings. It is intended to support informed decision-making and does not replace advice from a healthcare professional.</p>
+            </div>
+          </details>
+          <details class="details faq-item">
+            <summary>Is iDC a medical device?</summary>
+            <div class="details-body">
+              <p>No. iDC is not a medical device and is not intended to diagnose, treat, cure, or prevent any disease. Always follow guidance from your doctor, diabetes nurse, or healthcare team.</p>
+            </div>
+          </details>
+          <details class="details faq-item">
+            <summary>Who is iDC intended for?</summary>
+            <div class="details-body">
+              <p>iDC is intended for:</p>
+              <ul>
+                <li>Adults with Type 1 diabetes</li>
+                <li>Adults with insulin-treated Type 2 diabetes</li>
+              </ul>
+              <p>The app is not designed for children or for use without prior knowledge of insulin management.</p>
+            </div>
+          </details>
+          <details class="details faq-item">
+            <summary>Does iDC automatically decide my insulin dose?</summary>
+            <div class="details-body">
+              <p>No. iDC provides calculated estimates only, based on the information you enter. You remain fully responsible for deciding whether and how to use any recommendation.</p>
+            </div>
+          </details>
+          <details class="details faq-item">
+            <summary>Can iDC replace my doctor or diabetes nurse?</summary>
+            <div class="details-body">
+              <p>No. iDC is a support tool only. It should be used alongside guidance from your healthcare team, not as a replacement for professional medical care.</p>
+            </div>
+          </details>
+          <details class="details faq-item">
+            <summary>What information does iDC use to calculate doses?</summary>
+            <div class="details-body">
+              <p>Calculations may be based on:</p>
+              <ul>
+                <li>Carbohydrate intake</li>
+                <li>Current blood glucose level</li>
+                <li>Insulin-to-carbohydrate ratio</li>
+                <li>Correction factor</li>
+              </ul>
+              <p>Accuracy depends on correct personal settings and accurate data entry.</p>
+            </div>
+          </details>
+          <details class="details faq-item">
+            <summary>What units does iDC use?</summary>
+            <div class="details-body">
+              <p>iDC uses:</p>
+              <ul>
+                <li>mmol/L for blood glucose</li>
+                <li>grams for carbohydrates</li>
+              </ul>
+              <p>These are standard units used in the UK and Europe.</p>
+            </div>
+          </details>
+          <details class="details faq-item">
+            <summary>Are the glucose targets based on official guidance?</summary>
+            <div class="details-body">
+              <p>Yes. iDC uses commonly accepted clinical guidance for blood glucose targets. However, targets vary between individuals and should always be confirmed with your healthcare team.</p>
+            </div>
+          </details>
+          <details class="details faq-item">
+            <summary>What should I do if my blood glucose is too low or too high?</summary>
+            <div class="details-body">
+              <ul>
+                <li><strong>Below 4.0 mmol/L:</strong> Treat immediately using your usual hypo treatment.</li>
+                <li><strong>Persistently high levels:</strong> Follow your healthcare plan and seek medical advice if needed.</li>
+              </ul>
+              <p>iDC does not provide emergency or urgent medical instructions.</p>
+            </div>
+          </details>
+          <details class="details faq-item">
+            <summary>Is my data safe?</summary>
+            <div class="details-body">
+              <p>Your privacy is important:</p>
+              <ul>
+                <li>iDC does not sell user data</li>
+                <li>Data is stored securely</li>
+                <li>Any data sharing or exporting is user-initiated</li>
+              </ul>
+              <p>Please see our <a href="privacy.html">Privacy Policy</a> for full details.</p>
+            </div>
+          </details>
+          <details class="details faq-item">
+            <summary>Does iDC work offline?</summary>
+            <div class="details-body">
+              <p>Yes. Core features are designed to work offline. Some features, such as updates or sharing, may require an internet connection.</p>
+            </div>
+          </details>
+          <details class="details faq-item">
+            <summary>Can iDC connect to glucose monitors or insulin pumps?</summary>
+            <div class="details-body">
+              <p>Currently, iDC uses manual data entry. Integration with external devices may be considered in future updates.</p>
+            </div>
+          </details>
+          <details class="details faq-item">
+            <summary>Is iDC suitable for pregnancy or gestational diabetes?</summary>
+            <div class="details-body">
+              <p>No. iDC is not intended for pregnancy or gestational diabetes, where specialist medical supervision is required.</p>
+            </div>
+          </details>
+          <details class="details faq-item">
+            <summary>Is iDC free to use?</summary>
+            <div class="details-body">
+              <p>Core features are available at no cost. Optional features may be introduced in future versions.</p>
+            </div>
+          </details>
+          <details class="details faq-item">
+            <summary>How do I get support or report an issue?</summary>
+            <div class="details-body">
+              <p>Support is available via:</p>
+              <ul>
+                <li>The website <a href="#contact-separator">contact page</a></li>
+                <li>In-app feedback options</li>
+              </ul>
+              <p>User feedback helps improve accuracy and usability.</p>
+            </div>
+          </details>
+          <details class="details faq-item faq-disclaimer">
+            <summary>Important Disclaimer</summary>
+            <div class="details-body">
+              <p>iDC is a support and information tool only. Always consult a qualified healthcare professional before making changes to your insulin treatment.</p>
+            </div>
+          </details>
+        </div>
       </div>
     </section>
 

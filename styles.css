@@ -700,6 +700,33 @@ code{
   line-height:1.6;
 }
 
+/* FAQ accordion */
+.faq-list{
+  max-width: 700px;
+  margin: 0 auto;
+}
+.faq-item{
+  margin-bottom: 12px;
+}
+.faq-item:last-child{
+  margin-bottom: 0;
+}
+.faq-item .details-body ul{
+  margin: 8px 0;
+  padding-left: 24px;
+}
+.faq-item .details-body li{
+  margin-bottom: 4px;
+  color: var(--muted);
+}
+.faq-disclaimer{
+  border-color: var(--accent1);
+  background: rgba(74, 144, 226, 0.06);
+}
+[data-theme="dark"] .faq-disclaimer{
+  background: rgba(74, 144, 226, 0.1);
+}
+
 .footer{
   margin-top: 26px;
   padding-top: 18px;
